@@ -7,7 +7,12 @@ class Menu extends Component{
         super(props);
         this.state = {
             selectedDish : null    
-        };
+        }
+        console.log("Menu component   constuctoris invoked");
+    }
+
+    componentDidMount(){
+        console.log("menu component componentDidMount is invoked");
     }
 
     onDishSelect(dish) {
@@ -44,8 +49,10 @@ class Menu extends Component{
                             </CardImgOverlay>
                         </Card>
                     </div>
-                )
+                );
         });
+
+        console.log("Menu component render is invoked");
         return(
             <div className="container">
                 <div className="row">
