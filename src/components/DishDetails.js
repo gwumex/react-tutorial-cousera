@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle, Media, CardText, CardBody} from 'reactstrap';
-import './DishDetails.css';
+import { Card, CardImg, CardImgOverlay, CardTitle, Media, CardText, CardBody } from 'reactstrap';
 
 
-class DishDetails extends Component { 
-    constructor(props){
+class DishDetails extends Component {
+    constructor(props) {
         super(props);
     };
-    renderDish(dish){
-        if (dish != null){
-            return(
-                <div key={dish.id} className="col-12 col-md-5 m-1">
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt="hello there" className="img"/>
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+    renderDish(dish) {
+        if (dish != null) {
+            return (
+                
+                <div key={dish.id} >
+                    <Card>
+                        <CardImg width="100%" src={dish.image} alt="hello there" className="img" />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+
+                        </CardBody>
+                    </Card>
                 </div>
             );
-                
-            } else{
-                return (
-                    <div></div>
-                );
-            }
-        } 
+
+        } else {
+            return (
+                <div></div>
+            );
+        }
+    }
 
 
-    render(){        
-        return(
-            <div className="row">
+    render() {
+        return (
+            <div >
                 {this.renderDish(this.props.selectedDish)}
             </div>
         );

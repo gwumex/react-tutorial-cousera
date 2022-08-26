@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CardImg, CardImgOverlay, CardTitle, Media, CardText, CardBody } from 'reactstrap';
 import { Card } from 'reactstrap';
 import DishDetails from "./DishDetails";
-import Hello from "./Hello";
+import DishComments from "./DishComment";
 
 class Menu extends Component {
     constructor(props) {
@@ -35,12 +35,20 @@ class Menu extends Component {
         console.log("Menu component render is invoked");
         return (
             <div className="container">
-                <div className="row">
-                    {menu}
-                </div>
+                    <div className="row">
+                    {menu}                    
+                     </div>  
+                <div class="row ">
+                    <div class="col-12 col-md-5 m-1">
+                    <DishDetails selectedDish={this.state.selectedDish} />  
 
-                    <DishDetails selectedDish={this.state.selectedDish} />
-            </div>
+                    </div>
+                    <div class="col-12 col-md-5 m-2 shadow-sm p-3 mb-5 bg-white rounded" >
+                    <DishComments selectedDish={this.state.selectedDish} />                  
+
+                    </div>
+                </div>           
+                </div>
         );
     }
 }
