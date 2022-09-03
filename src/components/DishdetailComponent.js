@@ -40,6 +40,7 @@ class DishDetail extends React.Component {
         if (!dish) return(<div></div>);
 
         return (
+            <div className="container">
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
                     {this.renderDish(dish)}
@@ -47,6 +48,7 @@ class DishDetail extends React.Component {
                 <div className="col-12 col-md-5 m-1">
                     {this.renderComments(dish.comments)}
                 </div>
+            </div>
             </div>
         );
     }
