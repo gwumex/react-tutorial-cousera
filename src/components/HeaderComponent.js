@@ -87,7 +87,10 @@ class Header extends Component {
                 <Modal isOpen={this.state.isModalOpen} >
                     <ModalHeader >
                         Login
-                    </ModalHeader>
+                        <button type="button" className="close float-right mt-10" aria-label="Close" onClick={this.toggleModal}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>                    
+                        </ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleLogin}>
                             <FormGroup>
