@@ -23,8 +23,9 @@ class CommentForm extends Component {
     }
 
     handleSubmit = (values) => {
+        this.toggleForm()
         console.log("Current State is " + JSON.stringify(values));
-        alert("Current State is" + JSON.stringify(values))
+        // alert("Current State is" + JSON.stringify(values))
     }
 
     render() {
@@ -47,11 +48,11 @@ class CommentForm extends Component {
                                         placeholder="Rating"
                                         className="form-control"
                                     >
-                                       <option value="">1</option>
-                                       <option value="">2</option>
-                                       <option value="">3</option>
-                                       <option value="">4</option>
-                                       <option value="">5</option>
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
                                     </Control.select>
                                 </Col>
                             </Row>
