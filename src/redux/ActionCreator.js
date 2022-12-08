@@ -1,4 +1,5 @@
-import * as ActionTypes from './ActionType';
+import * as ActionTypes from './ActionType'
+import { DISHES } from '../shared/Dishes';
 
 export const addComment = (dishId, rating, author, comment) => {
     return ({
@@ -11,3 +12,36 @@ export const addComment = (dishId, rating, author, comment) => {
         }
     })
 }
+
+// export const fetchDishes = () => (dispatch) => {
+
+//     dispatch(dishesLoading(true));
+
+//     setTimeout(() => {
+//         dispatch(addDishes(DISHES));
+//     }, 2000);
+// }
+
+export const fetchDishes = () => {
+    return ((dispatch) => {
+        dispatch(dishesLoading(true));
+
+        setTimeout(() => {
+            dispatch(addDishes(DISHES));
+        }, 2000);
+    })
+}
+
+export const dishesLoading = () => ({
+    type: ActionTypes.DISHES_LOADING
+});
+
+export const dishesFailed = (errmess) => ({
+    type: ActionTypes.DISHES_FAILED,
+    payload: errmess
+});
+
+export const addDishes = (dishes) => ({
+    type: ActionTypes.ADD_DISHES,
+    payload: dishes
+});
