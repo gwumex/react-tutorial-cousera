@@ -28,14 +28,13 @@ function RenderCard({ item, isLoading, errMess }) {
         );
 }
 function Home(props) {
-    console.log("this is the promotion", props.dish)
+    console.log("this is the promotion error", props.promosErrMess)
     return (
         <div className="container">
             <div className="row align-items-start">
                 <RenderCard item={props.dish}
                     isLoading={props.dishesLoading}
                     errMess={props.dishesErrMess} />
-                    <div>im am the dishes</div>
             </div>
             <div className="row align-items-start">
                 <RenderCard item={props.promotion}
