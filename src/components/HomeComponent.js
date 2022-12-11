@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, CardTitle, CardText, CardImg, CardBody, CardSubtitle } from 'reactstrap';
-import { Loading } from "./components/LoadingComponent";
-import { baseUrl } from './shared/baseUrl'
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform } from 'react-animation-components';
 
 function RenderCard({ item, isLoading, errMess }) {
     if (isLoading) {
@@ -16,15 +17,20 @@ function RenderCard({ item, isLoading, errMess }) {
     }
     else
         return (
-            <Card>
-                <CardBody>
-                    <CardImg src={baseUrl + item.image} alt={item.name} />
-                    <CardTitle>{item.name}</CardTitle>
-                    {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
-                    <CardText>{item.description}</CardText>
-                </CardBody>
+            <FadeTransform
+                in transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Card>
+                    <CardBody>
+                        <CardImg src={baseUrl + item.image} alt={item.name} />
+                        <CardTitle>{item.name}</CardTitle>
+                        {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
+                        <CardText>{item.description}</CardText>
+                    </CardBody>
 
-            </Card>
+                </Card>
+            </FadeTransform>
         );
 }
 function Home(props) {
@@ -39,8 +45,8 @@ function Home(props) {
             <div className="row align-items-start">
                 <RenderCard item={props.promotion}
                     isLoading={props.promosLoading}
-                    errMess={props.promosErrMess} 
-                    />
+                    errMess={props.promosErrMess}
+                />
             </div>
             <div className="row align-items-start">
                 <RenderCard item={props.leader} />

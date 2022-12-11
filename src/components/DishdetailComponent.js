@@ -3,7 +3,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl'
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components'
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len)
 const minLength = (len) => (val) => (val) && (val.length >= len)
@@ -107,35 +108,39 @@ class CommentForm extends Component {
 
 function RenderDish({ dish }) {
     return (
-        <Card>
-            <CardImg width="100%" src={ baseUrl + dish.image} alt={dish.name} />
-            <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-            </CardBody>
-        </Card>
+            <FadeTransform in transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
+                <Card>
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
     );
 }
 
 function RenderComments({ comments, postComment, dishId }) {
     if (!comments) return (<div></div>);
-
     const list = comments.map(c => {
         return (
             <li key={c.id}>
                 <p>{c.comment}</p>
                 <p>-- {c.author} , {c.date}</p>
             </li>
-
         );
     });
-
+    
     return (
-        <div>
+        <Stagger in >
             <h4>Comments</h4>
+            <Fade in>
             {list}
             <CommentForm dishId={dishId} postComment={postComment} />
-        </div>
+            </Fade>
+        </Stagger>
     );
 }
 
@@ -153,7 +158,7 @@ const DishDetail = (props) => {
         return (
             <div className='container'>
                 <div className='row'>
-                    <h4>{props.errmess}</h4>                
+                    <h4>{props.errmess}</h4>
                 </div>
             </div>
         )
