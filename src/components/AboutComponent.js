@@ -1,11 +1,13 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import {baseUrl} from '../shared/baseUrl';
+import  {Loading}  from './LoadingComponent';
 
 function RenderLeader({ leader }) {
     return (
 <div class="media" key={leader.id}>
-  <img class="align-self-start mr-3" src={leader.image} alt={leader.name}/>
+  <img class="align-self-start mr-3" src={baseUrl + leader.image} alt={leader.name}/>
   <div class="media-body">
     <h5 class="mt-0">{leader.name}</h5>
     <p>{leader.designation}</p>
@@ -23,6 +25,24 @@ function About(props) {
             </div>
         )
     });
+        if (props.leadersLoading) {
+            return (
+                <div className='container'>
+                    <div className='row'>
+                        <Loading />
+                    </div>
+                </div>
+            )
+        }
+        else if (props.leadersErrMess) {
+            return (
+                <div className='container'>
+                    <div className='row'>
+                        <h4>{props.dishes.errMess}</h4>                
+                    </div>
+                </div>
+            ) 
+        } else 
 
     return (
         <div className="container">
