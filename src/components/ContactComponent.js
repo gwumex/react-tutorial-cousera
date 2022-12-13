@@ -12,9 +12,7 @@ const validateEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
 
 
 class Contact extends Component {
-    constructor(props) {
-        super(props)
-    }
+
 
     log = () => {
         alert(this.props.feedbackForm)
