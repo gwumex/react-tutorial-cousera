@@ -1,10 +1,10 @@
 import * as ActionTypes from './ActionType'
 
-
-export const Form = (state = form, action) => {
+export const FeedbackForm = (state = {firstname: 'abiola'}
+    , action) => {
     switch(action.type) {
-        case ActionTypes.ADD_LEADERS:
-                return {...state, isLoading: false, errMess: null, leaders: action.payload}
+        case ActionTypes.ADD_FEEDBACK:
+                return {...state, ...action.payload}
         default:
             return state;
     }

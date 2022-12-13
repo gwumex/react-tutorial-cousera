@@ -208,16 +208,22 @@ export const addLeaders = (leaders) => ({
 })
 
 
-//add feedbacks to database
-export const postFeedback = (values) => (dispatch) => {  
+//add feedbacks to database Assignment 4
+export const addFeedback = (feedback) => {
+    return ({
+        type: ActionTypes.ADD_FEEDBACK,
+        payload: feedback
+    })
+}
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {  
     const newFeedback = {
-        firstname: values.firstname,
-        lastname: values.lastname,
-        telnum: values.telnum,
-        email: values.email,
-        agree: values.agree,
-        contactType: values.contactType,
-        message: values.message
+        firstname: firstname,
+        lastname: lastname,
+        telnum: telnum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        message: message
     }
     newFeedback.date = new Date().toISOString();
 
@@ -243,7 +249,9 @@ export const postFeedback = (values) => (dispatch) => {
         throw errmess;
     })
     .then (response => response.json())
-    .then(response => console.log("helo---", response))
+    .then(response => {alert(response); return response})
+
+    // .then(response => dispatch(addFeedback(response)))
     .catch(error => {console.log('Post feedback', error.message);
         alert('Your comment could not be posted\nError: ' + error.message)})
 }

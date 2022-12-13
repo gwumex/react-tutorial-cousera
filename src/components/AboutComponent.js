@@ -3,9 +3,13 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media} from 're
 import { Link } from 'react-router-dom';
 import {baseUrl} from '../shared/baseUrl';
 import  {Loading}  from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components'
+
 
 function RenderLeader({ leader }) {
     return (
+<Stagger in >
+
 <div class="media" key={leader.id}>
   <img class="align-self-start mr-3" src={baseUrl + leader.image} alt={leader.name}/>
   <div class="media-body">
@@ -14,15 +18,21 @@ function RenderLeader({ leader }) {
     <p>{leader.description}</p>
   </div>
 </div>
+</Stagger>
     )
 }
 
 function About(props) {
     const leaders = props.leaders.map((leader) => {
         return (
+            <FadeTransform in transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
+
             <div class="mb-3">
                 <RenderLeader leader={leader} />
             </div>
+            </FadeTransform>
         )
     });
         if (props.leadersLoading) {

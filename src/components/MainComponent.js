@@ -17,7 +17,8 @@ const mapStateToProps = state => {
     dishes: state.dishes,
     comments: state.comments,
     promotions: state.promotions,
-    leaders: state.leaders
+    leaders: state.leaders,
+    feedbackForm: state.feedbackForm
   }
 }
 
@@ -33,8 +34,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments: () => { dispatch(fetchComments()) },
     fetchPromos: () => { dispatch(fetchPromos()) },
     fetchLeaders: () => {dispatch(fetchLeaders())},
-    postFeedback: (values) => {
-      return (dispatch(postFeedback(values)))
+    postFeedback: (firstname, lastname, telnum, email, agree, contactType, message) => {
+      return (dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message)))
     }
   })
 }
@@ -55,6 +56,7 @@ class Main extends Component {
   }
   
   render() {
+    console.log("hello guys", this.props.feedbackForm);
     const AboutPage = () => {
       return(
         <About leaders = {this.props.leaders.leaders} 
@@ -98,7 +100,10 @@ class Main extends Component {
               <Route path="/home" component={HomePage} />
               <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
               <Route exact path="/menu/:dishId" component={DishWithId} />
-              <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback = {this.props.postFeedback}/>} />
+              <Route exact path="/contactus" component={() => <Contact 
+              resetFeedbackForm={this.props.resetFeedbackForm} 
+              postFeedback = {this.props.postFeedback}
+              feedbackForm ={this.props.feedbackForm}/>} />
               <Route exact path="/aboutus" component={AboutPage} />
               <Redirect to="/home" />
             </Switch>
